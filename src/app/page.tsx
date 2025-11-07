@@ -7,7 +7,7 @@ export default function Home() {
       <header className="py-4 border-b sticky top-0 bg-background/80 backdrop-blur-sm z-10">
         <div className="container mx-auto flex items-center gap-2 px-4">
           <ShieldCheck className="w-8 h-8 text-primary" />
-          <h1 className="text-2xl font-bold text-primary font-headline">Veritas AI</h1>
+          <h1 className="text-2xl font-bold text-primary font-headline">Credify.Ai</h1>
         </div>
       </header>
       <main className="flex-grow container mx-auto p-4 md:p-8">
@@ -25,7 +25,7 @@ export default function Home() {
       </main>
       <footer className="p-4 border-t mt-8">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Veritas AI. Empowering truth through technology.
+          &copy; {new Date().getFullYear()} Credify.Ai. Empowering truth through technology.
         </div>
       </footer>
     </div>

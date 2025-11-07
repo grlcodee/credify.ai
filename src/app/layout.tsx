@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Veritas AI',
+  title: 'Credify.Ai',
   description: 'AI-powered misinformation verification engine. Uncover the truth.',
 };
 
