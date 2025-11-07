@@ -1,32 +1,33 @@
 import ContentAnalyzer from '@/components/content-analyzer';
-import { ShieldCheck } from 'lucide-react';
+import { Header } from '@/components/header';
+import { Button } from '@/components/ui/button';
+import { HelpCircle } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <header className="py-4 border-b sticky top-0 bg-background/80 backdrop-blur-sm z-10">
-        <div className="container mx-auto flex items-center gap-2 px-4">
-          <ShieldCheck className="w-8 h-8 text-primary" />
-          <h1 className="text-2xl font-bold text-primary font-headline">Credify.Ai</h1>
-        </div>
-      </header>
-      <main className="flex-grow container mx-auto p-4 md:p-8">
-        <div className="max-w-4xl mx-auto">
-          <section className="text-center mb-8 md:mb-12">
-            <h2 className="text-4xl md:text-5xl font-headline font-bold mb-3 bg-gradient-to-r from-primary to-accent/80 text-transparent bg-clip-text">
-              Uncover the Truth
-            </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Paste any text, article, or link below to get an instant credibility analysis from our advanced AI engine.
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#1A237E] via-[#151E60] to-[#0D123B]">
+      <Header />
+      <main className="flex-grow flex items-center justify-center container mx-auto px-4">
+        <div className="w-full max-w-4xl text-center">
+          <section className="mb-8">
+            <div className="inline-flex items-center rounded-full bg-glass px-4 py-1.5 text-sm font-medium text-white mb-4">
+              <span className="mr-2">✨</span>
+              Real-Time AI Verification
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-3 text-white">
+              Combat Misinformation in Real Time
+            </h1>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+              AI-powered credibility analysis for news, social media, and messaging apps — with verified sources, bias detection, and multilingual support.
             </p>
           </section>
           <ContentAnalyzer />
         </div>
       </main>
-      <footer className="p-4 border-t mt-8">
-        <div className="container mx-auto text-center text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} Credify.Ai. Empowering truth through technology.
-        </div>
+      <footer className="fixed bottom-4 right-4">
+          <Button variant="outline" size="icon" className="rounded-full bg-white/10 text-white hover:bg-white/20 border-white/20">
+            <HelpCircle className="h-5 w-5" />
+          </Button>
       </footer>
     </div>
   );

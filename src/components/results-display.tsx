@@ -44,8 +44,8 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
   const chartData = [{ name: "score", value: score }];
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-in">
-      <Card className="lg:col-span-1 shadow-md">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-fade-in mt-8">
+      <Card className="lg:col-span-1 shadow-md bg-glass text-white">
         <CardHeader>
           <CardTitle className="text-lg font-semibold">Credibility Score</CardTitle>
         </CardHeader>
@@ -55,12 +55,12 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
               <RadialBarChart innerRadius="70%" outerRadius="90%" data={chartData} startAngle={90} endAngle={-270} barSize={20}>
                 <PolarAngleAxis type="number" domain={[0, 100]} angleAxisId={0} tick={false} />
                 <RadialBar 
-                  background 
+                  background={{ fill: 'rgba(255, 255, 255, 0.1)' }}
                   dataKey='value' 
                   cornerRadius={10} 
                   fill={scoreColorVar}
                 />
-                <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="text-5xl font-bold fill-foreground font-headline">
+                <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle" className="text-5xl font-bold fill-white font-headline">
                   {result.credibilityScore}
                 </text>
               </RadialBarChart>
@@ -69,7 +69,7 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
         </CardContent>
       </Card>
 
-      <Card className="lg:col-span-2 shadow-md">
+      <Card className="lg:col-span-2 shadow-md bg-glass text-white">
         <CardHeader>
           <CardTitle className="text-lg font-semibold">Fact-Check Verdict</CardTitle>
         </CardHeader>
@@ -81,7 +81,7 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
         </CardContent>
       </Card>
 
-      <Card className="lg:col-span-3 shadow-md">
+      <Card className="lg:col-span-3 shadow-md bg-glass text-white">
         <CardHeader className="flex flex-row items-center gap-3">
           <Quote className="h-5 w-5 text-primary" />
           <CardTitle className="text-lg font-semibold">Verified Summary</CardTitle>
@@ -91,7 +91,7 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
         </CardContent>
       </Card>
 
-      <Card className="lg:col-span-3 shadow-md">
+      <Card className="lg:col-span-3 shadow-md bg-glass text-white">
         <CardHeader className="flex flex-row items-center gap-3">
           <Scale className="h-5 w-5 text-primary" />
           <CardTitle className="text-lg font-semibold">Bias & Emotion Analysis</CardTitle>
@@ -102,7 +102,7 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
       </Card>
 
       {result.evidenceSources && result.evidenceSources.length > 0 && (
-        <Card className="lg:col-span-3 shadow-md">
+        <Card className="lg:col-span-3 shadow-md bg-glass text-white">
           <CardHeader className="flex flex-row items-center gap-3">
             <LinkIcon className="h-5 w-5 text-primary" />
             <CardTitle className="text-lg font-semibold">Primary Evidence Sources</CardTitle>
@@ -112,7 +112,7 @@ export default function ResultsDisplay({ result }: ResultsDisplayProps) {
               {result.evidenceSources.map((source, index) => (
                 <li key={index} className="flex items-start">
                   <LinkIcon className="h-4 w-4 mr-3 mt-1 text-accent flex-shrink-0" />
-                  <a href={source} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline break-all transition-colors duration-200">
+                  <a href={source} target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:underline break-all transition-colors duration-200">
                     {source}
                   </a>
                 </li>
