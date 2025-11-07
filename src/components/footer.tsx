@@ -4,6 +4,7 @@
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { Twitter, Linkedin, Puzzle, Mail, HelpCircle } from 'lucide-react';
+import Image from 'next/image';
 
 export function Footer() {
   return (
@@ -12,12 +13,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-                <div className="bg-white rounded-md p-1">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10.5 16.5L6 12L7.41 10.59L10.5 13.67L16.59 7.59L18 9L10.5 16.5Z" fill="#1A237E"/>
-                    </svg>
-                </div>
-              <h1 className="text-2xl font-bold">Credify.AI</h1>
+                <Image
+                    src="/WhatsApp Image 2025-11-07 at 6.10.42 PM.jpeg"
+                    alt="Credify.AI Logo"
+                    width={120}
+                    height={32}
+                    className="h-8 w-auto"
+                />
             </div>
             <p className="text-gray-400 max-w-md">
               Real-time AI verification for news, social media, and messaging platforms. Serving media organizations, corporations, government agencies, and millions of users globally.
