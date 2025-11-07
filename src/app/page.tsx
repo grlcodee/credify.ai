@@ -7,9 +7,9 @@ import { Button } from '@/components/ui/button';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#1A237E] via-[#151E60] to-[#0D123B] pt-20">
+    <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#1A237E] via-[#151E60] to-[#0D123B]">
       <Header />
-      <main className="flex-grow flex items-center justify-center container mx-auto px-4">
+      <main className="flex-grow flex items-center justify-center container mx-auto px-4 pt-20">
         <div className="w-full max-w-4xl text-center">
           <section className="mb-8">
             <div className="inline-flex items-center rounded-full bg-glass px-4 py-1.5 text-sm font-medium text-white mb-4">

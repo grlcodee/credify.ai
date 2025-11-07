@@ -87,7 +87,7 @@ export default function HowItWorks() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#1A237E] via-[#151E60] to-[#0D123B] text-white">
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-12 md:py-20">
+      <main className="flex-grow container mx-auto px-4 py-12 md:py-20 pt-24">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-3">
