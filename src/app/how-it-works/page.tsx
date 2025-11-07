@@ -98,48 +98,50 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="space-y-16">
+          <div className="space-y-8">
             {steps.map((step, index) => (
-              <div key={index} className="flex flex-col md:flex-row items-start gap-8">
-                <div className="flex-shrink-0">{step.icon}</div>
-                <div className="flex-grow">
-                  <h2 className="text-2xl font-bold mb-3">{step.title}</h2>
-                  <p className="text-gray-300 mb-4">{step.description}</p>
-                  {step.details.length > 0 && (
-                     <ul className="space-y-2">
-                        {step.details.map((detail, i) => (
-                            <li key={i} className="flex items-start">
-                                <Check className="h-5 w-5 text-success mr-3 mt-1 flex-shrink-0" />
-                                <span>{detail}</span>
-                            </li>
-                        ))}
-                    </ul>
-                  )}
-                  {step.table && (
-                     <div className="my-6 bg-glass rounded-lg overflow-hidden border border-white/10">
-                        <table className="w-full text-left">
-                            <thead>
-                                <tr className='border-b border-white/10'>
-                                    {step.table.headers.map(header => <th key={header} className="p-4 font-semibold">{header}</th>)}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {step.table.rows.map((row, i) => (
-                                    <tr key={i} className={`${i < step.table.rows.length - 1 ? 'border-b border-white/10' : ''}`}>
-                                        <td className="p-4 flex items-center gap-2 font-semibold">
-                                            {row.icon}
-                                            {row.label}
-                                        </td>
-                                        <td className="p-4 text-gray-300">{row.text}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                  )}
-                   {step.extraContent && (
-                    <p className="text-gray-300 mt-4">{step.extraContent}</p>
-                  )}
+              <div key={index} className="bg-glass p-8 rounded-lg">
+                <div className="flex flex-col md:flex-row items-start gap-8">
+                  <div className="flex-shrink-0">{step.icon}</div>
+                  <div className="flex-grow">
+                    <h2 className="text-2xl font-bold mb-3">{step.title}</h2>
+                    <p className="text-gray-300 mb-4">{step.description}</p>
+                    {step.details.length > 0 && (
+                       <ul className="space-y-2">
+                          {step.details.map((detail, i) => (
+                              <li key={i} className="flex items-start">
+                                  <Check className="h-5 w-5 text-success mr-3 mt-1 flex-shrink-0" />
+                                  <span>{detail}</span>
+                              </li>
+                          ))}
+                      </ul>
+                    )}
+                    {step.table && (
+                       <div className="my-6 bg-glass rounded-lg overflow-hidden border border-white/10">
+                          <table className="w-full text-left">
+                              <thead>
+                                  <tr className='border-b border-white/10'>
+                                      {step.table.headers.map(header => <th key={header} className="p-4 font-semibold">{header}</th>)}
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  {step.table.rows.map((row, i) => (
+                                      <tr key={i} className={`${i < step.table.rows.length - 1 ? 'border-b border-white/10' : ''}`}>
+                                          <td className="p-4 flex items-center gap-2 font-semibold">
+                                              {row.icon}
+                                              {row.label}
+                                          </td>
+                                          <td className="p-4 text-gray-300">{row.text}</td>
+                                      </tr>
+                                  ))}
+                              </tbody>
+                          </table>
+                      </div>
+                    )}
+                     {step.extraContent && (
+                      <p className="text-gray-300 mt-4">{step.extraContent}</p>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
