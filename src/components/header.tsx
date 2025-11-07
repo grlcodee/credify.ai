@@ -2,19 +2,17 @@
 
 import Link from 'next/link';
 import { Button } from './ui/button';
-import Image from 'next/image';
 
 export function Header() {
   return (
     <header className="bg-white text-gray-800 shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2">
-          <Image
-            src="/logo.png"
-            alt="Credify.AI Logo"
-            width={32}
-            height={32}
-          />
+           <div className="bg-white rounded-md p-1">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10.5 16.5L6 12L7.41 10.59L10.5 13.67L16.59 7.59L18 9L10.5 16.5Z" fill="#1A237E"/>
+              </svg>
+          </div>
           <h1 className="text-2xl font-bold text-gray-900">Credify.AI</h1>
         </div>
         <nav className="hidden md:flex items-center gap-8">

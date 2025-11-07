@@ -1,7 +1,9 @@
+'use client';
+
 import ContentAnalyzer from '@/components/content-analyzer';
+import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 import { Button } from '@/components/ui/button';
-import { HelpCircle } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -24,11 +26,18 @@ export default function Home() {
           <ContentAnalyzer />
         </div>
       </main>
-      <footer className="fixed bottom-4 right-4">
-          <Button variant="outline" size="icon" className="rounded-full bg-white/10 text-white hover:bg-white/20 border-white/20">
-            <HelpCircle className="h-5 w-5" />
+      <section className="w-full py-20 bg-[#0D123B] text-white text-center">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-4">Start Verifying Content in Real Time</h2>
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-8">
+            Join newsrooms, corporations, and government agencies using Credify.AI to combat misinformation at scale
+          </p>
+          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-8 py-6 rounded-lg text-lg">
+            Get Started Free
           </Button>
-      </footer>
+        </div>
+      </section>
+      <Footer />
     </div>
   );
 }
