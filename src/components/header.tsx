@@ -6,21 +6,35 @@ import { Button } from './ui/button';
 
 export function Header() {
   return (
-    <header className="py-4">
-      <div className="container mx-auto flex items-center justify-between px-4">
+    <header className="bg-white text-gray-800 shadow-md">
+      <div className="container mx-auto flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2">
-          <ShieldCheck className="w-8 h-8 text-white" />
-          <h1 className="text-2xl font-bold text-white">Credify.Ai</h1>
+          <div className="p-1.5 bg-blue-900 rounded-md">
+            <ShieldCheck className="w-6 h-6 text-white" />
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900">Credify.Ai</h1>
         </div>
-        <nav className="hidden md:flex items-center gap-6">
-          <Link href="#" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Home</Link>
-          <Link href="#" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">How It Works</Link>
-          <Link href="#" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">For Enterprises</Link>
-          <Link href="#" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">Contact</Link>
+        <nav className="hidden md:flex items-center gap-8">
+          <Link href="#" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors relative group">
+            <span>Home</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </Link>
+          <Link href="#" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors relative group">
+            <span>How It Works</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </Link>
+          <Link href="#" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors relative group">
+            <span>For Enterprises</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </Link>
+          <Link href="#" className="text-sm font-medium text-gray-600 hover:text-primary transition-colors relative group">
+            <span>Contact</span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          </Link>
         </nav>
         <div className="flex items-center gap-4">
-          <Button variant="ghost" className="text-white hover:bg-white/10 hover:text-white">Login</Button>
-          <Button className="bg-primary hover:bg-primary/90 rounded-full">Sign Up</Button>
+          <Button variant="ghost" className="text-gray-600 hover:bg-gray-100 hover:text-primary">Login</Button>
+          <Button className="bg-primary hover:bg-primary/90 rounded-full text-primary-foreground">Sign Up</Button>
         </div>
       </div>
     </header>
