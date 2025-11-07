@@ -3,15 +3,14 @@
 import { ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from './ui/button';
+import Image from 'next/image';
 
 export function Header() {
   return (
     <header className="bg-white text-gray-800 shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 bg-blue-900 rounded-md">
-            <ShieldCheck className="w-6 h-6 text-white" />
-          </div>
+          <Image src="/logo.png" alt="Credify.Ai Logo" width={32} height={32} />
           <h1 className="text-2xl font-bold text-gray-900">Credify.Ai</h1>
         </div>
         <nav className="hidden md:flex items-center gap-8">
