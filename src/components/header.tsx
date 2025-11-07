@@ -14,7 +14,7 @@ export function Header() {
             alt="Credify.AI Logo"
             width={120}
             height={32}
-            className="h-8 w-auto"
+            className="h-10 w-auto"
           />
         </div>
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">

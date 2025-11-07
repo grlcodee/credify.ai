@@ -16,10 +16,10 @@ export default function Home() {
               <span className="mr-2">✨</span>
               Real-Time AI Verification
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-3 text-white">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 text-white">
               Combat Misinformation in Real Time
             </h1>
-            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
               AI-powered credibility analysis for news, social media, and messaging apps — with verified sources, bias detection, and multilingual support.
             </p>
           </section>
