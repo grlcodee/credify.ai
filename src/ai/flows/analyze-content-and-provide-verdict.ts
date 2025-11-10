@@ -11,6 +11,39 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
+const factCheck = ai.defineTool(
+  {
+    name: 'factCheck',
+    description: 'Searches for fact checks on a given query. Returns a list of claims and their ratings.',
+    inputSchema: z.object({
+      query: z.string().describe('The claim to search for fact checks on.'),
+    }),
+    outputSchema: z.any().describe('The search results from the Fact Check API, including claims and their ratings.'),
+  },
+  async (input) => {
+    const API_KEY = process.env.GEMINI_API_KEY;
+    if (!API_KEY) {
+      console.error('Google Fact Check API key is missing.');
+      return { error: 'The server is missing an API key for the fact-checking service.' };
+    }
+
+    const url = `https://factchecktools.googleapis.com/v1alpha1/claims:search?query=${encodeURIComponent(input.query)}&key=${API_KEY}`;
+    
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        const errorBody = await response.text();
+        console.error(`Fact Check API request failed with status ${response.status}: ${errorBody}`);
+        return { error: `Fact Check API request failed: ${errorBody}` };
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error calling Fact Check API:', error);
+      return { error: `Failed to fetch fact-check data. Reason: ${error instanceof Error ? error.message : 'Unknown'}` };
+    }
+  }
+);
+
 const AnalyzeContentInputSchema = z.object({
   content: z.string().describe('The text content or URL to analyze.'),
 });
@@ -33,7 +66,8 @@ const analyzeContentPrompt = ai.definePrompt({
   name: 'analyzeContentPrompt',
   input: {schema: AnalyzeContentInputSchema},
   output: {schema: AnalyzeContentOutputSchema},
-  prompt: `Analyze the following content and provide a credibility score, fact-check verdict, verified summary, evidence sources, and bias/emotion analysis.
+  tools: [factCheck],
+  prompt: `Analyze the following content and provide a credibility score, fact-check verdict, verified summary, evidence sources, and bias/emotion analysis. Use the factCheck tool if necessary to verify claims.
 
 Content: {{{content}}}
 
