@@ -20,7 +20,7 @@ export default function Home() {
               Combat Misinformation in Real Time
             </h1>
             <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto">
-              AI-powered credibility analysis for news, social media, and messaging apps — with verified sources, bias detection, and multilingual support.
+              AI-powered credibility analysis for news, social media, and messaging apps with verified sources, bias detection, and multilingual support.
             </p>
           </section>
           <ContentAnalyzer />
