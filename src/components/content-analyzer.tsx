@@ -17,7 +17,7 @@ import LoadingSkeleton from './loading-skeleton';
 
 const FormSchema = z.object({
   content: z.string()
-    .min(50, { message: "Please enter at least 50 characters for a meaningful analysis." })
+    .min(10, { message: "Please enter at least 10 characters for a meaningful analysis." })
     .max(5000, { message: "Content must not be longer than 5000 characters." }),
 });
 

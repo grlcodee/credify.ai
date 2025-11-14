@@ -1,4 +1,3 @@
-
 'use server';
 
 /**
@@ -11,6 +10,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import * as cheerio from 'cheerio';
 
 const AnalyzeContentInputSchema = z.object({
   content: z.string().describe('The text content or URL to analyze.'),
@@ -32,13 +32,15 @@ export async function analyzeContentAndProvideVerdict(input: AnalyzeContentInput
 
 const analyzeContentPrompt = ai.definePrompt({
   name: 'analyzeContentPrompt',
-  input: {schema: AnalyzeContentInputSchema},
+  input: {schema: z.object({ content: z.string() }) },
   output: {schema: AnalyzeContentOutputSchema},
-  prompt: `Analyze the following content based on your existing knowledge. Provide a credibility score, fact-check verdict, verified summary, evidence sources, and bias/emotion analysis.
+  prompt: `Analyze the following content. Provide a credibility score, fact-check verdict, verified summary, evidence sources, and bias/emotion analysis.
 
 Content: {{{content}}}
 
-If the content discusses a future or hypothetical event, you must set the factCheckVerdict to "Speculative" and explain in the summary that the event has not yet occurred. For all other content, determine the most appropriate verdict.
+- If the content is a URL for a non-article (like a YouTube video), state that you cannot analyze video or non-text content in the summary and set the factCheckVerdict to "Not enough verified data available".
+- If the content discusses a future or hypothetical event, you must set the factCheckVerdict to "Speculative" and explain in the summary that the event has not yet occurred. 
+- For all other content, determine the most appropriate verdict.
 
 Format your output as a JSON object conforming to the AnalyzeContentOutputSchema schema.
 
@@ -51,33 +53,92 @@ Specifically:
 `,
 });
 
+const isUrl = (text: string): boolean => {
+  try {
+    new URL(text);
+    return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+const isNonArticleUrl = (url: string): boolean => {
+    const nonArticleDomains = ['youtube.com', 'youtu.be', 'vimeo.com'];
+    try {
+        const urlObject = new URL(url);
+        return nonArticleDomains.some(domain => urlObject.hostname.includes(domain));
+    } catch {
+        return false;
+    }
+};
+
+
+async function fetchUrlContent(url: string): Promise<string | null> {
+    try {
+        const response = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' }});
+        if (!response.ok) {
+            console.error(`Failed to fetch URL: ${url}, status: ${response.status}`);
+            return null;
+        }
+        const html = await response.text();
+        const $ = cheerio.load(html);
+        
+        $('script, style, noscript, iframe, img, svg, header, footer, nav').remove();
+        
+        const mainContent = $('main, article, #main, #content, .post, .article-body').first().text();
+        
+        let bodyText;
+        if (mainContent && mainContent.trim().length > 100) {
+            bodyText = mainContent;
+        } else {
+            bodyText = $('body').text();
+        }
+
+        const cleanedText = bodyText.replace(/\s\s+/g, ' ').trim();
+        
+        return cleanedText.length > 50 ? cleanedText : null;
+
+    } catch (error) {
+        console.error(`Error fetching or parsing URL content for ${url}:`, error);
+        return null;
+    }
+}
+
+
 const analyzeContentAndProvideVerdictFlow = ai.defineFlow(
   {
     name: 'analyzeContentAndProvideVerdictFlow',
     inputSchema: AnalyzeContentInputSchema,
     outputSchema: AnalyzeContentOutputSchema,
   },
-  async input => {
-    // Check if content is a URL
+  async (input) => {
     let contentToAnalyze = input.content;
-    const urlRegex = /^(https?:\/\/[^\s]+)/;
-    if (urlRegex.test(input.content)) {
-      try {
-        const response = await fetch(input.content);
-        if (response.ok) {
-           // This is a very basic way to extract text. A more robust solution
-           // might use a library like Cheerio to parse HTML.
-           // For now, we'll assume the URL points to a text-based resource
-           // or that the AI can handle HTML content.
-          contentToAnalyze = await response.text();
+
+    if (isUrl(input.content)) {
+      if (isNonArticleUrl(input.content)) {
+        // It's a non-article URL, let the prompt handle it directly.
+        contentToAnalyze = input.content;
+      } else {
+        // It's an article URL, try to fetch it.
+        const fetchedContent = await fetchUrlContent(input.content);
+        if (fetchedContent) {
+          contentToAnalyze = fetchedContent;
+        } else {
+          // If fetch fails or content is insufficient, we proceed but the prompt will handle it.
+          // This gives the model context that fetching failed.
+          contentToAnalyze = `Could not retrieve content from URL: ${input.content}. Please analyze the URL itself.`;
         }
-      } catch (e) {
-        console.error('Could not fetch URL content', e);
-        // Proceed with the URL itself if fetching fails
       }
     }
     
+    if (!contentToAnalyze || contentToAnalyze.trim().length === 0) {
+       throw new Error("Input content is empty or could not be processed.");
+    }
+
     const {output} = await analyzeContentPrompt({ content: contentToAnalyze });
-    return output!;
+    if (!output) {
+      throw new Error("AI model failed to generate a valid analysis.");
+    }
+    return output;
   }
 );
