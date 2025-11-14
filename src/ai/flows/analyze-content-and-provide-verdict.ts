@@ -19,7 +19,7 @@ export type AnalyzeContentInput = z.infer<typeof AnalyzeContentInputSchema>;
 
 const AnalyzeContentOutputSchema = z.object({
   credibilityScore: z.number().describe('A credibility score between 0 and 100.'),
-  factCheckVerdict: z.enum(['True', 'Misleading', 'False', 'Not enough verified data available']).describe('The fact-check verdict.'),
+  factCheckVerdict: z.enum(['True', 'Misleading', 'False', 'Not enough verified data available', 'Speculative']).describe('The fact-check verdict.'),
   verifiedSummary: z.string().describe('A short, verified summary of the content.'),
   evidenceSources: z.array(z.string()).describe('Links to primary evidence sources.'),
   biasEmotionAnalysis: z.string().describe('Analysis of bias and emotional manipulation techniques in the content.'),
@@ -38,11 +38,13 @@ const analyzeContentPrompt = ai.definePrompt({
 
 Content: {{{content}}}
 
+If the content discusses a future or hypothetical event, you must set the factCheckVerdict to "Speculative" and explain in the summary that the event has not yet occurred. For all other content, determine the most appropriate verdict.
+
 Format your output as a JSON object conforming to the AnalyzeContentOutputSchema schema.
 
 Specifically:
 1.  credibilityScore:  A number between 0 and 100 (inclusive).
-2.  factCheckVerdict:  One of "True", "Misleading", "False", or "Not enough verified data available".
+2.  factCheckVerdict:  One of "True", "Misleading", "False", "Not enough verified data available", or "Speculative".
 3.  verifiedSummary:  A short, objective summary of the content.
 4.  evidenceSources:  An array of URLs for primary sources that support the summary. If you cannot find any, return an empty array.
 5.  biasEmotionAnalysis:  A brief analysis of any bias or emotional manipulation present in the content.
