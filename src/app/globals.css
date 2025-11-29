@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 228 84% 10%;
+    --foreground: 210 40% 98%;
+    --card: 228 50% 15%;
+    --card-foreground: 210 40% 98%;
+    --popover: 228 50% 15%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 260 80% 60%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 260 80% 60%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --success: 142 76% 46%;
+    --success-foreground: 210 40% 98%;
+    --warning: 48 96% 63%;
+    --warning-foreground: 30 96% 10%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 25.5%;
+    --ring: 260 80% 70%;
+    --radius: 0.5rem;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  .dark {
+    --background: 228 84% 10%;
+    --foreground: 210 40% 98%;
+    --card: 228 50% 15%;
+    --card-foreground: 210 40% 98%;
+    --popover: 228 50% 15%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 260 80% 60%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 260 80% 60%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --success: 142 76% 46%;
+    --success-foreground: 210 40% 98%;
+    --warning: 48 96% 63%;
+    --warning-foreground: 30 96% 10%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 25.5%;
+    --ring: 260 80% 70%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .bg-glass {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Google Translate Customization */
+/* Hide the default Google Translate banner and toolbar */
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+.goog-te-ftab-frame {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Prevent flickering during translation */
+html {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Hide the annoying top frame */
+.skiptranslate {
+  display: none !important;
+}
+
+/* Hide Google Translate iframes that cause flicker */
+iframe.skiptranslate,
+iframe.goog-te-banner-frame {
+  visibility: hidden !important;
+  display: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
+
+/* Style the Google Translate dropdown (hidden) */
+#google_translate_element {
+  display: none !important;
+}
+
+/* Prevent layout shift when Google Translate loads */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+body.translated-ltr,
+body.translated-rtl {
+  top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Keep language switcher and specific elements untranslated */
+.notranslate {
+  pointer-events: auto !important;
+}
+
+/* Disable all transitions during translation to prevent flicker */
+.translated-ltr *,
+.translated-rtl * {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Ensure Google Translate doesn't affect layout */
+body > .skiptranslate {
+  display: none !important;
+}
