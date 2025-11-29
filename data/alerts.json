@@ -1,0 +1,37 @@
+{
+  "alerts": [
+    {
+      "id": "alert-1732867200000-abc123",
+      "severity": "HIGH",
+      "title": "Viral Misinformation Detected",
+      "claim": "False claims about cyclone Ditwah impact spreading rapidly",
+      "reason": "Contradictory evidence from IMD + volume spike detected",
+      "type": "MISINFO_SPIKE",
+      "platforms": ["Twitter", "WhatsApp"],
+      "riskLevel": 89,
+      "timestamp": 1732867200000
+    },
+    {
+      "id": "alert-1732866000000-def456",
+      "severity": "MEDIUM",
+      "title": "Emotional Manipulation Pattern",
+      "claim": "Political narratives using fear-based language trending",
+      "reason": "High emotional sentiment detected in trending posts",
+      "type": "EMOTIONAL_MANIPULATION",
+      "platforms": ["Facebook", "Twitter"],
+      "riskLevel": 72,
+      "timestamp": 1732866000000
+    },
+    {
+      "id": "alert-1732865000000-ghi789",
+      "severity": "MEDIUM",
+      "title": "Health Misinformation Alert",
+      "claim": "Unverified health warnings about air quality spreading",
+      "reason": "Multiple unverified sources + sensitive topic",
+      "type": "HEALTH_MISINFO",
+      "platforms": ["WhatsApp", "Instagram"],
+      "riskLevel": 68,
+      "timestamp": 1732865000000
+    }
+  ]
+}

@@ -453,9 +453,11 @@ export default function Home() {
 
           <div className="grid lg:grid-cols-2 gap-6">
             <div className="relative rounded-xl overflow-hidden shadow bg-gradient-to-br from-blue-500 to-purple-600">
-              <div className="w-full h-64 flex items-center justify-center">
-                <span className="text-8xl">💬</span>
-              </div>
+              <img 
+                src="/WhatsApp Image 2025-11-29 at 08.23.35_12deaa6b.jpg" 
+                alt="Social Media Verification" 
+                className="w-full h-64 object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent p-6 flex flex-col justify-end">
                 <div className="inline-flex items-center gap-3 bg-white/10 rounded-full p-2 w-max mb-3">
                   <span className="text-white">💬</span>
@@ -466,9 +468,11 @@ export default function Home() {
             </div>
 
             <div className="relative rounded-xl overflow-hidden shadow bg-gradient-to-br from-green-500 to-teal-600">
-              <div className="w-full h-64 flex items-center justify-center">
-                <span className="text-8xl">📈</span>
-              </div>
+              <img 
+                src="/WhatsApp Image 2025-11-29 at 08.23.36_d0a5c771.jpg" 
+                alt="News Article Analysis" 
+                className="w-full h-64 object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent p-6 flex flex-col justify-end">
                 <div className="inline-flex items-center gap-3 bg-white/10 rounded-full p-2 w-max mb-3">
                   <span className="text-white">📈</span>
